@@ -1,0 +1,4 @@
+CREATE TABLE filmes (filmeID STRING, titulo STRING, genero STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INPATH '/home/cloudera/trabalho/pig/movies.csv' OVERWRITE INTO TABLE filmes;
+select * from filmes where genero=='Comedy';
+select count(*) from filmes where genero=='Comedy';
