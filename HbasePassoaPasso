@@ -1,0 +1,25 @@
+*** Start o  HBase shell e create tabela filmes
+
+hbase shell
+create 'filmes', 'id'
+exit
+
+** após isto exit
+
+** copiar o arquivo movies.dat no HDFS
+
+hdfs dfs -put home/cloudera/trabalho/movies.dat /tmp
+
+** Importação de dados no HBase
+hbase shell
+status ** verificar se serviços estão ativos  no Hbase 
+
+*** senão abrir o console da VM ou pelo Putt e start os serviços > sudo service hbase-master e > sudo service hbase-regionserver start
+
+Use ImportTsv para ler os dados no HDFS (/tmp/movies.dat) 
+*** importação dos dados Job
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns=HBASE_ROW_KEY,id:filmesid,id:titulo,id:titulo filmes /tmp/filmes.dat
+
+
+
+
